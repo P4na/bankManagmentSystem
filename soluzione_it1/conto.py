@@ -9,4 +9,6 @@ class Conto:
         self.saldo = saldo
 
     def __repr__(self):
-        return f"""Conto = {self.numero_conto} intestato a {self.cliente}\ncon saldo a {self.saldo}€"""
+        a = 0
+        return f'Conto = {a}'
+        #return str(f"""Conto = {self.numero_conto} intestato a {self.cliente}\ncon saldo a {self.saldo}€""")
