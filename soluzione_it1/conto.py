@@ -37,3 +37,14 @@ class Conto:
     @saldo.setter
     def saldo(self, saldo):
         self.__saldo = saldo
+        
+    def preleva_soldi(self, value):
+        if self.__saldo < value:
+            print("importo richiesto non presente sul conto")
+        else:
+            self.__saldo -= value
+            print("Saldo prelevato, buona giornata!")
+            
+    def versa_soldi(self, value):
+        self.__saldo += value
+        
