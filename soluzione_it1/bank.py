@@ -6,13 +6,15 @@ class Banca:
     lista_clienti = []
     conti_correnti = []
 
-    def __init__(self, nome_banca):
+    def __init__(self, nome_banca, nazione = "IT"):
         self.__nome_banca = nome_banca
         self.__clienti = []
         self.__conti_correnti = []
+        self.nazione = nazione
+        self.__id = id(self)
 
     def __repr__(self):
-        return f"Nome banca = {self.__nome_banca}\nnumero totale di clienti = {len(self.__clienti)}\nnumero totale di conti correnti: {len(self.__conti_correnti)}"
+        return f"Nome banca = {self.__nome_banca}\nnumero totale di clienti = {len(self.__clienti)}\nnumero totale di conti correnti: {len(self.__conti_correnti)}\n nazionalità = {self.nazione}"
     
     @property
     def nome_banca(self):
@@ -20,6 +22,14 @@ class Banca:
     @nome_banca.setter
     def nome_banca(self, nome_banca):
         self.__nome_cliente = nome_banca
+
+    @property
+    def nazione(self):
+        return self.nazione
+    @nazione.setter
+    def nazione(self, nazione):
+        self.nazione = nazione
+    
 
     @property
     def clienti(self):

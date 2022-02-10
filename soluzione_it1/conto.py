@@ -1,5 +1,9 @@
+from datetime import datetime
+
+
 class Conto:
     operazioni_effettuate = []
+    tassa_prelievo = 1.00
 
     def __init__(self, cliente, numero_conto, bilancio_conto=0, saldo=0):
         self.__cliente = cliente
@@ -39,12 +43,31 @@ class Conto:
         self.__saldo = saldo
         
     def preleva_soldi(self, value):
-        if self.__saldo < value:
-            print("importo richiesto non presente sul conto")
+        if self.tipo == True:
+            if self.__saldo < (value + self.tassa_prelievo):
+                self.__saldo -= value
+                if self.saldo < 0 and self.saldo == False:
+                    self.data_inizio_debito = datetime.datetime.now()
         else:
-            self.__saldo -= value
-            print("Saldo prelevato, buona giornata!")
-            
+            if self.__saldo < (value + self.tassa_prelievo):
+                print("importo richiesto non presente sul conto")
+            else:
+                self.__saldo -= value
+                print("Saldo prelevato, buona giornata!")
+                
     def versa_soldi(self, value):
+        if self.__saldo < 0:
+            self.__saldo += value
+            if self.__saldo >= 0:
+                self.data_inizio_debito = None
+                print("Debito saldato, non sei più poraccio")     
         self.__saldo += value
         
+        
+
+class ContoSpecial(Conto):
+    tipo = "Contospecial"
+    
+    @super
+    def __init__(self, cliente, numero_conto, bilancio_conto=0, saldo=0, data_inizio_debito = None, tassa_prelievo = 2.00):
+        super().__init__(cliente, numero_conto, bilancio_conto, saldo)
